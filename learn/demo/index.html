@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<script type="text/javascript">
+		//获取表单的数据存入数组
+		function getForm(){
+			var student = [];
+			var form = document.getElementById("info");//获取表单中所有数据
+			var name=form.elements[0].value;
+			student.push(name);
+			var number = form.elements[1].value;
+			student.push(number);
+			
+			var gender = form.elements[2].value;
+			student.push(gender);
+			
+			var school = form.elements[3].value;
+			student.push(school);
+			
+			
+			var major = form.elements[4].value;
+			student.push(major);
+			
+			var subject = form.elements[5].value;
+			student.push(subject);
+			
+			var score = form.elements[6].value;
+			student.push(score);
+			return student;
+			// console.log(student);
+			// createTable(student);
+		}
+		
+		function alertRow(){
+			var student = getForm();//获取表单数据
+			createTable(student);
+			
+		}
+		
+		//向表格中添加行数据
+		function createTable(data){
+			var table = document.getElementById("tab");
+			var len=table.rows.length;
+			
+			var tr = table.insertRow(len); 
+			for(var i = 0;i<data.length;i++){
+				var m = tr.insertCell(i);
+				m.innerHTML=data[i];
+			}
+			console.log(i);
+			var n = tr.insertCell(i);
+			n.innerHTML = '<input type="button" id="del" value="删除" onclick="deleteRow(this)"/>'+
+			'<input type="button" id="del" value="编辑" onclick="message(this)"/>'
+			// '<span style="display:hidden">'+len+'</span>';
+		}
+		
+		//删除行
+		function deleteRow(button){
+			button.parentNode.parentNode.parentNode.removeChild(button.parentNode.parentNode);
+		}
+		
+		//重置表单内容
+		function reset(){
+			var form = document.getElementById("info");//获取表单中所有数据
+			var len = form.elements;
+				
+			for(var i = 0;i<len;i++){
+				form.elements[i].value = "";
+			}
+		}
+		
+		//获取当前操作按钮所在的行
+		function getRow(btn){
+			this.node = btn.parentNode.parentNode;
+		}
+		//编辑表格内容
+		// 1.点击编辑按钮
+		// 2.根据提示框修改需要修改的信息
+		// 3.获取修改信息，重置修改的单元格的值
+		var node;//全局变量
+		
+		function message(editBtn){
+			alert("请输入需要修改后的信息");
+			getRow(editBtn);
+		}
+		
+		//点击确认修改信息
+		function change(){
+			var data = getForm();
+			for(var i =  0;i<data.length;i++){
+				if(!(data[i]==="")){
+					this.node.children[i].innerHTML=data[i];
+				}
+			}
+		}
+	</script>
+	<body>
+		<form id="info" align="center" >
+			姓名：<input type="text" name="姓名"><br>
+			学号：<input type="text" name="学号"><br>
+			性别：<select name="gender" >
+					<option value=""></option>
+					<option value="女">女</option>
+					<option value="男">男</option>
+				</select><br>
+			学院：<input type="text" name="学院"><br>
+			专业：<input type="text" name="专业"><br>
+			科目：<input type="text" name="科目"><br>
+			成绩：<input type="text" name="成绩"><br>
+			<input type="button" value="提交" onclick="alertRow()"/>
+			<input type="button" value="重置" onclick="reset()"/>
+			<input type="button" value="确认修改" onclick="change()"/>
+		</form>
+		
+		<table id="tab" align="center" border="1px"  cellspacing="0" width="500px" height="10px">
+			<tr>
+				<td>姓名</td>
+				<td>学号</td>
+				<td>性别</td>
+				<td>学院</td>
+				<td>专业</td>
+				<td>科目</td>
+				<td>成绩</td>
+				<td>操作</td>
+			</tr>
+		</table>
+	</body>
+</html>

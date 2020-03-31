@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title></title>
+		<script src="js/game.js"></script>
+		<style>
+			td{
+				user-select: none;
+				border-radius: 10px;
+				border: 0px;
+				background-color:  beige;
+				width: 50px;
+				height: 50px;
+			}
+			table{
+				border:1px;
+				background-color: burlywood;
+				border-radius: 10px;
+				width: 300px;
+				height: 300px;
+				text-align: center;
+			}
+			
+			input{
+				text-align: center;
+				width: 50px;
+				height: 30px;
+			}
+			
+			div{
+				padding-top: 10px;
+				text-align: center;
+			}
+			
+			p{
+				display: inline-block
+			}
+		</style>
+		
+	</head>
+	<body >
+		
+		<table align="center" id="tab" onmousedown = "getPostion1()" onmouseup="direction()">
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			
+		</table>
+		<div >
+			时间：<p id="timer">0</p>
+			分数：<p id="score">0</p>
+		</div>
+		
+		<div>
+			<p>滑动方向：</p>
+			<input type="button" id="start" onclick="init()" value="start" style="border:0px ;background-color:seagreen"/>
+			<input type="button" value="up" onclick="upSlide()"/>
+			<input type="button" value="left" onclick="leftSlide()"/>
+			<input type="button" value="right" onclick="rightSlide()"/>
+			<input type="button" value="down" onclick="downSlide()"/>
+		</div>
+		
+	</body>
+	
+</html>
